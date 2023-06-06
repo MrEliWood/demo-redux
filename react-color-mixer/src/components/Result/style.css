@@ -1,0 +1,9 @@
+.result {
+	flex-direction: column;
+	width: 100%;
+}
+
+.result-color {
+	width: 100%;
+	height: 100px;
+}
