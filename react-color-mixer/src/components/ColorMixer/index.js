@@ -7,12 +7,12 @@ export default function ColorMixer() {
 	const colors = ['red', 'green', 'blue'];
 
 	return (
-		<section className='color-mixer'>
+		<main className='color-mixer'>
 			{colors.map((color, i) => {
 				return <ColorCard color={color} />;
 			})}
 
 			<Result />
-		</section>
+		</main>
 	);
 }
