@@ -1,20 +1,32 @@
+// instruct next to render this component client side
 'use client';
 
-import { useState } from 'react';
-
+// import the selector and dispatch hooks from redux
 import { useSelector, useDispatch } from 'react-redux';
+
+// import any necessary actions
 import { incrementRed, decrementRed, incrementGreen, decrementGreen, incrementBlue, decrementBlue, newRed, newGreen, newBlue } from '@/globalState/features/colors.js';
 
 import './style.css';
 
 export default function ColorCard({ color }) {
+	// request state with the useSelector hook
 	const state = useSelector((state) => state.colors);
-	const dispatch = useDispatch();
 
-	const [number, setNumber] = useState(state[color]);
+	// state is an object containing all of our global values
+	//
+	// state: {
+	//     red: num,
+	//     green: num,
+	//     blue: num
+	// }
+
+	// create a new dispatcher with the useDispatch hook
+	const dispatch = useDispatch();
 
 	const handleIncrement = () => {
 		if (color === 'red') {
+			// request an action from the recucer by dispatching the action
 			dispatch(incrementRed());
 		}
 
@@ -42,9 +54,8 @@ export default function ColorCard({ color }) {
 	};
 
 	const handleInputChange = (e) => {
-		setNumber(e.target.value);
-
 		if (color === 'red') {
+			// pass the input's value into the action as the 'action.payload'
 			dispatch(newRed(e.target.value));
 		}
 
@@ -63,7 +74,10 @@ export default function ColorCard({ color }) {
 
 			<div className='button-block'>
 				<button onClick={handleDecrement}>-</button>
-				<input type='text' value={number} onChange={handleInputChange} />
+
+				{/* using bracket notation allows us to access keys on our state object with the color variable */}
+				{/* state.red === state['red'] */}
+				<input type='text' value={state[color]} onChange={handleInputChange} />
 				<button onClick={handleIncrement}>+</button>
 			</div>
 		</section>

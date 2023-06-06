@@ -1,5 +1,3 @@
-'use client';
-
 import ColorCard from '../colorCard';
 import Result from '../result';
 
@@ -10,11 +8,11 @@ export default function ColorMixer() {
 
 	return (
 		<section className='color-mixer'>
-			<Result />
-
 			{colors.map((color, i) => {
-				return <ColorCard color={color} />;
+				return <ColorCard key={i} color={color} />;
 			})}
+
+			<Result />
 		</section>
 	);
 }
